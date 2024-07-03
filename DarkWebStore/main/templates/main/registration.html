@@ -1,0 +1,30 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <title>Registration</title>
+</head>
+<body>
+    <div class="container">
+        <form class="form">
+            <span class="input-span">
+                <label for="email" class="label">Email</label>
+                <input type="email" name="email" id="email"/>
+            </span>
+            <span class="input-span">
+                <label for="text" class="label">User name</label>
+                <input type="text" name="text" id="text"/>
+            </span>
+            <span class="input-span">
+                <label for="password" class="label">Password</label>
+                <input type="password" name="password" id="password"/>
+            </span>
+            <span class="span"></span>
+            <input class="submit" type="submit" value="Sign up" />
+            <span class="span">Do have an account? <a href="{% url 'main:login' %}"><br>Sign in</a></span>
+        </form>
+    </div> 
+</body>
+</html>
