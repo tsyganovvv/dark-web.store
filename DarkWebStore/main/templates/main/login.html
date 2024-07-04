@@ -8,18 +8,19 @@
 </head>
 <body>
     <div class="container">
-        <form class="form">
+        <form class="form" action="{% url 'main:login' %}" method="POST">
+            {% csrf_token %}
             <span class="input-span">
-                <label for="text" class="label">User name</label>
-                <input type="text" name="text" id="text"/>
+                <label for="{{ form.username.id_for_label }}" class="label">Имя Пользователя</label>
+                {{ form.username }}
             </span>
             <span class="input-span">
-                <label for="password" class="label">Password</label>
-                <input type="password" name="password" id="password"/>
+                <label for="{{ form.password.id_for_label }}" class="label">Пароль</label>
+                {{ form.password }}
             </span>
             <span class="span"></span>
-            <input class="submit" type="submit" value="Log in" />
-            <span class="span">Don't have an account? <a href="{% url 'main:registration' %}"><br>Sign up</a></span>
+            <input class="submit" type="submit" value="Войти" />
+            <span class="span">Нет аккаунта? <a href="{% url 'main:registration' %}"><br>Зарегестрироваться</a></span>
         </form>
     </div>
 </body>
