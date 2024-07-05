@@ -14,18 +14,25 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user:
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('main:registration'))
+                return HttpResponseRedirect(reverse('main:index'))
     else:
         form = UserLoginForm
     
     context = {
         'form': form,
     }
-    return render(request, 'main/login.html', context=context)
+    return render(request, 'main/login.html', context)
 
 def registration(request):
     context = {
         'tittle' : 'registration'
     }
     
-    return render(request, 'main/registration.html')
+    return render(request, 'main/registration.html', context)
+def index(request):
+    context = {}
+    return render(request, 'main/index.html', context)
+
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('main:index'))
