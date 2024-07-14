@@ -41,7 +41,7 @@
 				  <h1 class="mb-4"><a href="{% url 'main:index' %}" class="logo">DARK-WEB</a></h1>
 				  <ul>
 					<li><a href="{% url 'main:index' %}"><span>Главная страница</span></a></li>
-					<li><a href="about.html"><span>Магазин</span></a></li>
+					<li><a href="{% url 'main:products:index' %}"><span>Маркет</span></a></li>
 					<li><a href="{% url 'main:about' %}"><span>О нас</span></a></li>
 					<li class="active"><a href="{% url 'main:contact' %}"><span>Связь</span></a></li>
 				  </ul>
@@ -186,8 +186,6 @@
 		<div class="row">
 		  <div class="col-md-12 text-center">
 
-			<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 		  </div>
 		</div>
 	  </div>
