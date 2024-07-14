@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.models import AbstractUser
-from main.forms import UserLoginForm
+from main.forms import UserLoginForm, UserCreateForm
 from django.contrib import auth
 from django.urls import reverse
 
@@ -24,10 +24,16 @@ def login(request):
     return render(request, 'main/login.html', context)
 
 def registration(request):
+    if request.method == 'POST':
+        form = UserCreateForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('main:login'))
+    else:
+        form = UserCreateForm()
     context = {
-        'tittle' : 'registration'
+        'form': form,
     }
-    
     return render(request, 'main/registration.html', context)
 def index(request):
     context = {}
@@ -36,3 +42,11 @@ def index(request):
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('main:index'))
+
+def about(request):
+    context = {}
+    return render(request, 'main/about.html', context)
+
+def contact(request):
+    context = {}
+    return render(request, 'main/contact.html', context)

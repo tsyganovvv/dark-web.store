@@ -42,8 +42,8 @@
                 <ul>
                     <li class="active"><a href="{% url 'main:index' %}"><span>Главная страница</span></a></li>
                     <li><a href="about.html"><span>Магазин</span></a></li>
-                    <li><a href="blog.html"><span>О нас</span></a></li>
-                    <li><a href="contact.html"><span>Связь</span></a></li>
+                    <li><a href="{% url 'main:about' %}"><span>О нас</span></a></li>
+                    <li><a href="{% url 'main:contact' %}"><span>Связь</span></a></li>
                 </ul>
                 </div>
             </div>
@@ -72,7 +72,7 @@
 		<div class="container-fluid px-0">
 		  <div class="row no-gutters text js-fullheight align-items-end justify-content-center" data-scrollax-parent="true">
 			<div class="col-md-12 ftco-animate text-center">
-			  <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'main:index' %}">Главная страница</a></span></p>
+			  <p class="breadcrumbs"><span class="mr-2">Главная страница</a></span></p>
 			  <h1 class="bread">DARK-WEB</h1>
 			</div>
 		  </div>

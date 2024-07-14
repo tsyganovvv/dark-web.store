@@ -8,6 +8,12 @@
 </head>
 <body>
     <div class="container">
+        {% if form.non_field_errors %}
+            <div class="label" role="alert"
+            style="margin-top: 50px; color:white;font-size:50%;">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
         <form class="form" action="{% url 'main:login' %}" method="POST">
             {% csrf_token %}
             <span class="input-span">

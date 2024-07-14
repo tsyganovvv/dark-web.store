@@ -8,18 +8,29 @@
 </head>
 <body>
     <div class="container">
-        <form class="form">
+        {% if form.errors %}
+            <div class="label" role="alert"
+            style="margin-top: 50px; color:white;font-size:20%;">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+        <form class="form" action="{% url 'main:registration' %}" method="POST">
+            {% csrf_token %}
             <span class="input-span">
-                <label for="email" class="label">Эл. почта</label>
-                <input type="email" name="email" id="email"/>
+                <label for="{{ form.email.id_for_label }}" class="label">Эл. почта</label>
+                {{ form.email }}
             </span>
             <span class="input-span">
-                <label for="text" class="label">Имя пользователя</label>
-                <input type="text" name="text" id="text"/>
+                <label for="{{ form.username.id_for_label }}" class="label">Имя пользователя</label>
+                {{ form.username }}
             </span>
             <span class="input-span">
-                <label for="password" class="label">Пароль</label>
-                <input type="password" name="password" id="password"/>
+                <label for="{{ form.password1.id_for_label }}" class="label">Пароль</label>
+                {{ form.password1 }}
+            </span>
+            <span class="input-span">
+                <label for="{{ form.password2.id_for_label }}" class="label">Подтвердите пароль</label>
+                {{ form.password2 }}
             </span>
             <span class="span"></span>
             <input class="submit" type="submit" value="Зарегестрироваться" />
