@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css'%}">
     <link rel="stylesheet" href="{% static 'css/animate.css'%}">
+    <link rel="stylesheet" href="{% static 'css/styleforrange.css'%}">
     
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css'%}">
     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css'%}">
@@ -29,51 +30,16 @@
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
 </head>
 <body>
-
-    <div class="page">
-    <nav id="colorlib-main-nav" role="navigation">
-      <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
-      <div class="js-fullheight colorlib-table">
-        <div class="img" style="background-image: url({% static 'images/bg_3.jpg' %});"></div>
-        <div class="colorlib-table-cell js-fullheight">
-          <div class="row no-gutters">
-            <div class="col-md-12 text-center">
-              <h1 class="mb-4"><a href="{% url 'main:index' %}" class="logo">DARK-WEB</a></h1>
-              <ul>
-                <li><a href="{% url 'main:index' %}"><span>Главная страница</span></a></li>
-                <li class="active"><a href="{% url 'main:products:index' %}"><span>Магазин</span></a></li>
-                <li><a href="{% url 'main:about' %}"><span>О нас</span></a></li>
-                <li><a href="{% url 'main:contact' %}"><span>Связь</span></a></li>
-              </ul>
-            </div>
+    <header>
+        <div class="container">
+          <div class="colorlib-navbar-brand">
+            <a class="colorlib-logo" href="{% url 'main:products:index' %}">Назад</a>
           </div>
-        </div>
+          <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
       </div>
-    </nav>
-    
-    <div id="colorlib-page">
-      <header>
-      	<div class="container">
-	        <div class="colorlib-navbar-brand">
-	          <a class="colorlib-logo" href="{% url 'main:index' %}">{{ request.user.username }}</a>
-	        </div>
-	        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-        </div>
-      </header>
-
-      <section class="hero-wrap js-fullheight" style="background-image: url({% static 'images/bg_3.jpg' %});">
-      	<div class="overlay"></div>
-	      <div class="container-fluid px-0">
-	        <div class="row no-gutters text js-fullheight align-items-end justify-content-center" data-scrollax-parent="true">
-	          <div class="col-md-12 ftco-animate text-center">
-	            <p class="breadcrumbs"><span class="mr-2"></span> <span>Маркет</span></p>
-	            <h1 class="bread">Store</h1>
-	          </div>
-	        </div>
-	      </div>
-      </section>
-	  <section class="ftco-section ftco-no-pb ftco-no-pt">
-		{% for product in products %}
+    </header>
+    <section class="ftco-section ftco-no-pb ftco-no-pt">
+		{% for product in product %}
 		<div class="container-fluid px-0">
 			<div class="row no-gutters">
 				<div class="col-md-12 blog-wrap">
@@ -84,20 +50,53 @@
 						<div class="col-md-6">
 							<div class="text p-md-5 p-4 ftco-animate">
 								
-								<h2 class="mb-4"><a href="blog-single.html">{{ product.name }}</a></h2>
+								<h2 class="mb-4"><a href="">{{ product.name }}</a></h2>
 								<p>{{ product.description }}</p>
-								<h2 class="mb-4"><a href="blog-single.html">{{ product.price }} ₽ / грамм(шт)</a></h2>
-								<p class="mb-0 mt-4"><a href="{{product.id}}" class="btn btn-primary">Заказать <span class="ion-ios-arrow-forward"></span></a></p>
+								<h2 class="mb-4"><a href="">{{ product.price }} ₽ / грамм(шт)</a></h2>
 							</div>
 						</div>
 					</div>
 				</div>
 				{% endfor %}
-	</section>
-
-
-
-      <footer class="ftco-footer ftco-section img">
+    </section>
+    <section class="ftco-section ftco-no-pt ftco-no-pb contact-section">
+        <div class="container">
+            <div class="row block-9">
+                        <div class="col-md-5 d-flex order-last contact-info ftco-animate">
+                            <div class="row d-flex align-items-center">
+                                <div class="pl-md-5 p-4">
+                        <h2 class="mb-4">Contact Information</h2>
+                        <p><span>Address:</span> 203 St. Mountain View, San Francisco, California, USA</p>
+                        <p><span>Phone:</span> <a href="tel://1234567920">+2 392 3949 410</a></p>
+                        <p><span>Email:</span> <a href="mailto:info@yoursite.com">admin@dark-web.store</a></p>
+                        <p><span>Website:</span> <a href="#">dark-web.store</a></p>
+                    </div>
+                            </div>
+                        </div>
+            <div class="col-md-6 order-first ftco-animate">
+                <form action="#" class="bg-light p-4 p-md-5">
+                <h2 class="mb-4">Оформление заказа</h2>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Ваш Telegram">
+                </div>
+                <p>Укажите кол-во {% for product in product %}{{product.name}}{% endfor %}  в граммах(шт)</p>
+                <div class="containerforrange">
+                    <div class="PB-range-slider-div">
+                        <input class="PB-range-slider" type="range" id="rangeInput" name="rangeInput" min="0" max="20" value="0"
+                                oninput="amount.value=rangeInput.value">                                                       
+                        <output class="PB-range-slidervalue" id="amount" name="amount" for="rangeInput">0</output>
+                    </div>
+                </div>
+                <div style="position:relative; height:20px;"></div>
+                <div class="form-group">
+                    <input type="submit" value="Оформить заказ" class="btn btn-primary py-3 px-5">
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </section>
+    <footer class="ftco-footer ftco-section img">
 		<div class="overlay"></div>
 	  <div class="container">
 		<div class="row mb-5">

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -16,5 +17,10 @@ class Product(models.Model):
     quantity = models.PositiveBigIntegerField(default=0)
     image = models.ImageField(upload_to='products_images')
     category = models.ForeignKey(to=ProductCategory, on_delete=models.CASCADE)
+    
     def __str__(self):
         return f'Продукт: {self.name} | Категория: {self.category.name}'
+    
+    def get_absolute_url(self):
+        return reverse("products:product", args=[self.id])
+    
