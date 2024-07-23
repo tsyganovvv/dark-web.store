@@ -1,4 +1,5 @@
 {% load static %}
+{% load my_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +68,7 @@
                             <div class="row d-flex align-items-center">
                                 <div class="pl-md-5 p-4">
                         <h2 class="mb-4">Ордер</h2>
-                        <p><span>Расчетная стоймость</span> {{ product.price | add:product.price}}₽ / {{ product.price }}USDT / {{ product.price }}BTC</p>
+                        <p><span>Расчетная стоймость</span> {{ product.price|multiply:3}}₽ / {{ product.price|multiply:3|division:91}}USDT / {{ product.price|multiply:3|division:5839757}}BTC</p>
                         <p><span>BTC:</span> <p>bc1qk47h64v4lk2ltvxqphpq6kq3r90wqxaqklea6w</p></p>
                         <p><span>USDT:</span> <p>0x8F5e571FA46002B62FB73dC1A0F3560dDd3CFEdE</p></p>
                         <p><span>Нажмите кнопку <b>Оплатить</b> после проведения транзакции на указанный счет BTC или USDT.</span></p>
