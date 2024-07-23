@@ -10,9 +10,11 @@ def index(request):
         'products': Product.objects.all(),
         'categories': ProductCategory.objects.all()}
     return render(request, 'products/index.html', context)
+
 def product(request, id):
     context={
         'id' : request.path.split('/')[-1],
+        'url_order' : f'products/{request.path.split('/')[-1]}/order',
     }
     context['product'] = Product.objects.filter(id=context['id'])
     return render(request, 'products/product.html', context)

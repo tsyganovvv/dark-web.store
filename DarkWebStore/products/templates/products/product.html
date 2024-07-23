@@ -1,8 +1,9 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Store</title>
+    <title>Order</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -33,9 +34,8 @@
     <header>
         <div class="container">
           <div class="colorlib-navbar-brand">
-            <a class="colorlib-logo" href="{% url 'main:products:index' %}">Назад</a>
+            <a class="colorlib-logo" style="color:brown;" href="{% url 'main:products:index' %}">Назад</a>
           </div>
-          <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
       </div>
     </header>
     <section class="ftco-section ftco-no-pb ftco-no-pt">
@@ -52,25 +52,30 @@
 								
 								<h2 class="mb-4"><a href="">{{ product.name }}</a></h2>
 								<p>{{ product.description }}</p>
-								<h2 class="mb-4"><a href="">{{ product.price }} ₽ / грамм(шт)</a></h2>
+								<h2 class="mb-4 price" id="price">{{ product.price }} ₽ / грамм(шт)</h2>
 							</div>
 						</div>
 					</div>
 				</div>
 				{% endfor %}
     </section>
-    <section class="ftco-section ftco-no-pt ftco-no-pb contact-section">
+    <section class="ftco-section ftco-no-pt ftco-no-pb contact-section order">
+		{% for product in product %}
         <div class="container">
             <div class="row block-9">
                         <div class="col-md-5 d-flex order-last contact-info ftco-animate">
                             <div class="row d-flex align-items-center">
                                 <div class="pl-md-5 p-4">
-                        <h2 class="mb-4">Contact Information</h2>
-                        <p><span>Address:</span> 203 St. Mountain View, San Francisco, California, USA</p>
-                        <p><span>Phone:</span> <a href="tel://1234567920">+2 392 3949 410</a></p>
-                        <p><span>Email:</span> <a href="mailto:info@yoursite.com">admin@dark-web.store</a></p>
-                        <p><span>Website:</span> <a href="#">dark-web.store</a></p>
+                        <h2 class="mb-4">Ордер</h2>
+                        <p><span>Расчетная стоймость</span> {{ product.price | add:product.price}}₽ / {{ product.price }}USDT / {{ product.price }}BTC</p>
+                        <p><span>BTC:</span> <p>bc1qk47h64v4lk2ltvxqphpq6kq3r90wqxaqklea6w</p></p>
+                        <p><span>USDT:</span> <p>0x8F5e571FA46002B62FB73dC1A0F3560dDd3CFEdE</p></p>
+                        <p><span>Нажмите кнопку <b>Оплатить</b> после проведения транзакции на указанный счет BTC или USDT.</span></p>
+						<p>С вами свяжутся в Telegram в течении 10 минут после проведения транзакции.</p>
                     </div>
+					<div class="form-group">
+						<input type="submit" value="Оплатить" class="btn btn-primary py-3 px-5">
+					  </div>
                             </div>
                         </div>
             <div class="col-md-6 order-first ftco-animate">
@@ -79,7 +84,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Ваш Telegram">
                 </div>
-                <p>Укажите кол-во {% for product in product %}{{product.name}}{% endfor %}  в граммах(шт)</p>
+                <p>Укажите кол-во {{product.name}}  в граммах(шт)</p>
                 <div class="containerforrange">
                     <div class="PB-range-slider-div">
                         <input class="PB-range-slider" type="range" id="rangeInput" name="rangeInput" min="0" max="20" value="0"
@@ -87,14 +92,11 @@
                         <output class="PB-range-slidervalue" id="amount" name="amount" for="rangeInput">0</output>
                     </div>
                 </div>
-                <div style="position:relative; height:20px;"></div>
-                <div class="form-group">
-                    <input type="submit" value="Оформить заказ" class="btn btn-primary py-3 px-5">
-                </div>
                 </form>
             </div>
             </div>
         </div>
+		{% endfor %}
     </section>
     <footer class="ftco-footer ftco-section img">
 		<div class="overlay"></div>
