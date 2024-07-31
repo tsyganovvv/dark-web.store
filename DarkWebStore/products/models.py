@@ -25,6 +25,7 @@ class Order(models.Model):
     telegram = models.CharField(max_length=128)
     num = models.IntegerField(default=1)
     user_name = models.CharField(max_length=128, unique=True)
+    product_name = models.CharField(max_length=128)
     
     def __str__(self) -> str:
         return f'Телеграм: {self.telegram} | Количество: {self.num}'

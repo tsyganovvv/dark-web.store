@@ -13,12 +13,14 @@ def index(request):
     return render(request, 'products/index.html', context)
 
 def product(request, id):
+    product_ = Product.objects.get(id=id)
     if request.method == 'POST':
         form = createOrder(data=request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.user_name = request.user
             post.num = request.POST['rangeInput']
+            post.product_name = product_.name
             try:
                 post.save()
             except Exception:
@@ -32,12 +34,15 @@ def product(request, id):
         'id' : request.path.split('/')[-1],
         'form' : form,
     }
-    context['product'] = Product.objects.filter(id=context['id'])
+    context['product'] = product_
 
     return render(request, 'products/product.html', context)
 def order(request, id):
     form = []
     context = {
         'form' : form,
+        'id' : request.path.split('/')[-2],
     }
+    context['product'] = Product.objects.filter(id=context['id'])
+    
     return render(request, 'products/order.html', context)
