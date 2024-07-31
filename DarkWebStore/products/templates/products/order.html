@@ -39,53 +39,6 @@
           </div>
       </div>
     </header>
-    <section class="ftco-section ftco-no-pb ftco-no-pt">
-		{% for product in product %}
-		<div class="container-fluid px-0">
-			<div class="row no-gutters">
-				<div class="col-md-12 blog-wrap">
-					<div class="row no-gutters align-items-center">
-						<div class="col-md-6 img js-fullheight" style="background-image: url({{ product.image.url }});">
-							
-						</div>
-						<div class="col-md-6">
-							<div class="text p-md-5 p-4 ftco-animate">
-								
-								<h2 class="mb-4"><a href="">{{ product.name }}</a></h2>
-								<p>{{ product.description }}</p>
-								<h2 class="mb-4 price" id="price">{{ product.price }} ₽ / грамм(шт)</h2>
-							</div>
-						</div>
-					</div>
-				</div>
-    </section>
-    <section class="ftco-section ftco-no-pt ftco-no-pb contact-section order">
-            <div class="col-md-6 order-first ftco-animate">
-                <form class="bg-light p-4 p-md-5" action="{% url 'main:products:product' id %}" method="POST">
-					{% csrf_token %}
-					<h2 class="mb-4">Оформление заказа</h2>
-					<div class="form-group">
-						<label class="small mb-1" for="{{ form.telegram.id_for_label }}">Ваш Telegram</label>
-						{{ form.telegram }}
-					</div>
-					<div class="form-group">
-						<label class="small mb-1" for="{{ form.num.id_for_label }}">Укажите кол-во {{ product.name }} грамм(штук)</label>
-						{{ form.num }}
-					</div>
-					<div class="PB-range-slider-div">
-                        <input class="PB-range-slider" type="range" id="rangeInput" name="rangeInput" min="0" max="20" value="0"
-                                oninput="amount.value=rangeInput.value">  
-						<output class="PB-range-slidervalue" id="amount" name="amount" for="rangeInput">0</output>
-						<div class="form-group">
-							<input type="submit" value="Оплатить" class="btn btn-primary py-3 px-5">
-						</div>
-				</form>
-
-            </div>
-            </div>
-        </div>
-		{% endfor %}
-    </section>
     <footer class="ftco-footer ftco-section img">
 		<div class="overlay"></div>
 	  <div class="container">
@@ -175,6 +128,5 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{%static 'js/google-map.js' %}"></script>
     <script src="{%static 'js/main.js' %}"></script>
-	<script src="{%static 'js/product_copy.js' %}"></script>
 	</body>
 </html>

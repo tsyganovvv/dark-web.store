@@ -20,7 +20,12 @@ class Product(models.Model):
     
     def __str__(self):
         return f'Продукт: {self.name} | Категория: {self.category.name}'
+
+class Order(models.Model):
+    telegram = models.CharField(max_length=128)
+    num = models.IntegerField(default=1)
+    user_name = models.CharField(max_length=128, unique=True)
     
-    def get_absolute_url(self):
-        return reverse("products:product", args=[self.id])
+    def __str__(self) -> str:
+        return f'Телеграм: {self.telegram} | Количество: {self.num}'
     
