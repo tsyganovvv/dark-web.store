@@ -30,8 +30,14 @@
     <link rel="stylesheet" href="{% static 'css/flaticon.css'%}">
     <link rel="stylesheet" href="{% static 'css/icomoon.css'%}">
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
+	<link rel="stylesheet" href="{% static 'css/button.css'%}">
 </head>
 <body>
+	<script>
+		function redirect() {
+			window.location.href = "{% url 'main:products:success' %}"
+		}
+	</script>
     <header>
         <div class="container">
           <div class="colorlib-navbar-brand">
@@ -43,6 +49,39 @@
 		<div style="positions:relative; height:100px;"></div>
 		<div class="col-md-6 order-first ftco-animate">
 			
+				{% csrf_token %}
+			<h2 class="mb-4">Оформление заказа</h2>
+			<div class="container">
+				<div class="row block-9">
+							<div class="col-md-5 d-flex order-last contact-info ftco-animate">
+								<div class="row d-flex align-items-center">
+									<div class="pl-md-5 p-4">
+							<h2 class="mb-4">Ордер</h2>
+							<p><span>На позицию {{order.product_name }}</span></p>
+							<p><span>Количество: {{order.num }} грамм(штук)</span></p>
+							<p><span>Расчетная стоймость:</span></p>
+							<p>{{ product.price|multiply:order.num}}₽ / {{ product.price|multiply:order.num|division:91}}USDT / {{ product.price|multiply:order.num|division:5839757}}BTC</p>
+							<div>
+								<p><span>BTC:</span> <p>bc1qk47h64v4lk2ltv...</p></p>
+								<button onclick="copy('bc1qk47h64v4lk2ltvxqphpq6kq3r90wqxaqklea6w')" class="Btnpay">
+									Copy
+									<svg class="svgIcon" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path></svg>
+								  </button>
+							</div>
+							<div>
+								<p><span>USDT:</span> <p>0x8F5e571FA46002B62...</p></p>
+								<button onclick="copy('0x8F5e571FA46002B62FB73dC1A0F3560dDd3CFEdE')" class="Btnpay">
+									Copy
+									<svg class="svgIcon" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path></svg>
+								  </button>
+							</div>
+							<p><span>Нажмите кнопку <b>Оплатить</b> после проведения транзакции на указанный счет BTC или USDT.</span></p>
+							<p>С вами свяжутся в Telegram в течении 10 минут после проведения транзакции.</p>
+						</div>
+			
+						<div class="form-group">
+							<input type="submit" onclick="redirect()" value="Оплатить" class="btn btn-primary py-3 px-5">
+						  </div>
 		</div>
 		</div>
 	</div>
@@ -136,5 +175,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{%static 'js/google-map.js' %}"></script>
     <script src="{%static 'js/main.js' %}"></script>
+	<script src="{%static 'js/copy.js' %}"></script>
 	</body>
 </html>

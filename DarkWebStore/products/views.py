@@ -38,11 +38,18 @@ def product(request, id):
 
     return render(request, 'products/product.html', context)
 def order(request, id):
-    form = []
+    if request.method == 'POST':
+        return HttpResponseRedirect(reverse('main:products:success'))
     context = {
-        'form' : form,
+        
         'id' : request.path.split('/')[-2],
     }
-    context['product'] = Product.objects.filter(id=context['id'])
+    context['product'] = Product.objects.get(id=context['id'])
+    context['order'] = Order.objects.get(user_name=request.user)
     
     return render(request, 'products/order.html', context)
+
+def success(request):
+    if request.method == 'POST':
+        return HttpResponseRedirect(reverse('main:products:index'))
+    return render(request, 'products/success.html')
